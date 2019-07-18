@@ -93,35 +93,35 @@ def scrapeSite(targetURL, targetSite):
     for js in soup.find_all('script'):
         #try:
         print str(js.get('src')), type(str(js.get('src')))
-##        if str(js.get('src'))[0] == '/' and str(js.get('src'))[1] != '/':
-##            jsPage = requests.get('{}{}'.format(targetURL, js.get('src')))
-##            jsData = jsPage.text
-##
-##            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, js.get('src').split('/')[-1]), 'w')
-##            jsFile.write(str(jsData.encode('utf-8')))
-##            jsFile.close()
-##        elif str(js.get('src'))[0] == '/' and str(js.get('src'))[1] == '/':
-##            #print js.get('src')[2:]
-##            jsPage = requests.get('http://{}'.format(js.get('src')[2:]))
-##            jsData = jsPage.text
-##            print js.get('src').split('/')[-1]
-##            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, js.get('src').split('/')[-1]), 'w')
-##            jsFile.write(str(jsData.encode('utf-8')))
-##            jsFile.close()
-##        elif str(js.get('src'))[0] == 'h':
-##            jsPage = requests.get('{}'.format(js.get('src')))
-##            jsData = jsPage.text
-##
-##            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, js.get('src').split('/')[-1]), 'w')
-##            jsFile.write(str(jsData.encode('utf-8')))
-##            jsFile.close()
-##        else:
-##            continue
-##        #except:
-##         #   continue
-##        js['src'] = 'javascript/{}{}'.format(os.path.splitext(os.path.basename(js['src']))[0],
-##                                             os.path.splitext(os.path.basename(js['src']))[1])
-##        print js['src'], type(js['src'])
+        if str(js.get('src'))[0] == '/' and str(js.get('src'))[1] != '/':
+            jsPage = requests.get('{}{}'.format(targetURL, js.get('src')))
+            jsData = jsPage.text
+
+            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, js.get('src').split('/')[-1]), 'w')
+            jsFile.write(str(jsData.encode('utf-8')))
+            jsFile.close()
+        elif str(js.get('src'))[0] == '/' and str(js.get('src'))[1] == '/':
+            #print js.get('src')[2:]
+            jsPage = requests.get('http://{}'.format(js.get('src')[2:]))
+            jsData = jsPage.text
+            print js.get('src').split('/')[-1]
+            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, js.get('src').split('/')[-1]), 'w')
+            jsFile.write(str(jsData.encode('utf-8')))
+            jsFile.close()
+        elif str(js.get('src'))[0] == 'h':
+            jsPage = requests.get('{}'.format(js.get('src')))
+            jsData = jsPage.text
+
+            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, js.get('src').split('/')[-1]), 'w')
+            jsFile.write(str(jsData.encode('utf-8')))
+            jsFile.close()
+        else:
+            continue
+        #except:
+         #   continue
+        js['src'] = 'javascript/{}{}'.format(os.path.splitext(os.path.basename(js['src']))[0],
+                                             os.path.splitext(os.path.basename(js['src']))[1])
+        print js['src'], type(js['src'])
 
     # Get Images #
     for img in soup.find_all('img'):
@@ -143,7 +143,7 @@ def scrapeSite(targetURL, targetSite):
 
 while True:
     targetURL, targetSite = getValidTargetURL()
-    #targetURL = 'https://login.yahoo.com/config/login'
+    #targetURL = 'https://groceries.morrisons.com'
     createLocalFiles(targetSite)
     fileData = scrapeSite(targetURL, targetSite)
     writeHTMLData(fileData, targetSite)
