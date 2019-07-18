@@ -1,0 +1,4 @@
+----- TO DO LIST -----
+Distinguish between Relative and Normal URLS
+Find / Download custom fonts (Possible /fonts Dir)
+Allow for Custom URLS Eg. login.someWebsite.co.uk
