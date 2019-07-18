@@ -124,6 +124,5 @@ public class Menu_Methods {
         if (result.isPresent()) {
             requested_url = (result.get());
         }
-
     }
 }
