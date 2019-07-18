@@ -9,7 +9,7 @@ import urllib                                       #USED FOR IMAGE_GRAB
 #import lxml.html                                   #NOT BEING USED (Parser)
 #from lxml.cssselect import CSSSelector             #NOT BEING USED (Parser)
 
-
+# Test commit
 def getValidTargetURL():
     validURL = False
     while not validURL:
