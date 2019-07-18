@@ -143,7 +143,7 @@ def scrapeSite(targetURL, targetSite):
 
 while True:
     targetURL, targetSite = getValidTargetURL()
-    #targetURL = 'https://groceries.morrisons.com'
+    targetURL = 'https://www.escrow.com/'
     createLocalFiles(targetSite)
     fileData = scrapeSite(targetURL, targetSite)
     writeHTMLData(fileData, targetSite)
