@@ -11,6 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -20,9 +21,13 @@ import java.util.Optional;
 
 public class Menu_Methods {
 
-    private String requested_url;
+    private String requested_url = null;
+    private WebView page;
 
     public Scene create_menu(Stage stage) {
+
+        VBox vbox = new VBox();
+
         // create a menu
         javafx.scene.control.Menu project_menu = new javafx.scene.control.Menu("Project");
         javafx.scene.control.Menu edit_menu = new javafx.scene.control.Menu("Edit");
@@ -43,17 +48,11 @@ public class Menu_Methods {
         MenuItem internet_explorer_item  = new MenuItem("Internet Explorer");
 
         // add menu items to menu
-        project_menu.getItems().add(new_item);
-        project_menu.getItems().add(open_item);
-        project_menu.getItems().add(exit_item);
+        project_menu.getItems().addAll(new_item, open_item, exit_item);
 
-        edit_menu.getItems().add(undo_item);
-        edit_menu.getItems().add(redo_item);
+        edit_menu.getItems().addAll(undo_item, redo_item);
 
-        view_menu.getItems().add(firefox_item);
-        view_menu.getItems().add(chrome_item);
-        view_menu.getItems().add(edge_item);
-        view_menu.getItems().add(internet_explorer_item);
+        view_menu.getItems().addAll(firefox_item, chrome_item, edge_item, internet_explorer_item);
 
         // setting actions for menu items
         open_item.setOnAction(e -> {
@@ -63,6 +62,9 @@ public class Menu_Methods {
         new_item.setOnAction(e -> {
             open_enter_url_window();
             System.out.println(requested_url);
+
+            if (vbox.getChildren().size() == 2) vbox.getChildren().remove(1);
+            if ( requested_url != null ) vbox.getChildren().addAll(page);
         });
 
         exit_item.setOnAction(e -> {
@@ -73,16 +75,13 @@ public class Menu_Methods {
         MenuBar menu_bar = new MenuBar();
 
         // add menu to menubar
-        menu_bar.getMenus().add(project_menu);
-        menu_bar.getMenus().add(edit_menu);
-        menu_bar.getMenus().add(view_menu);
-        menu_bar.getMenus().add(help_menu);
+        menu_bar.getMenus().addAll(project_menu, edit_menu, view_menu, help_menu);
 
         // create a VBox
-        VBox vbox = new VBox(menu_bar);
+        vbox.getChildren().add(menu_bar);
 
         // create a scene
-        Scene scene = new Scene(vbox, 1000, 800);
+        Scene scene = new Scene(vbox, 1000, 600);
 
         return scene;
     }
@@ -123,6 +122,9 @@ public class Menu_Methods {
 
         if (result.isPresent()) {
             requested_url = (result.get());
+
+            Browser browser = new Browser();
+            page = browser.browse_url(requested_url);
         }
     }
 }

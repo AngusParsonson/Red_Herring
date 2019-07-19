@@ -1,0 +1,18 @@
+Welcome to Red Herring - the most sophisticated real-time phishing website designer in the world.
+
+Here at Red Herring, we pride ourselves on simplicity, that's why creating a completely accurate replica of your
+chosen website is as simple as entering one url.
+
+Basic insructions of use ------------------------------------------------------------------------------------------
+
+Replicating website:
+
+1) Click Project->New
+2) Enter the url of the website you wish to replicate e.g. www.paypal.com
+3) Click OK
+
+Opening previous project:
+
+1) Click Project->Open
+2) Find directory of project you wish to open
+3) Click Open
