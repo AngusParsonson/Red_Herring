@@ -1,22 +1,16 @@
 package sample;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Optional;
 
 public class Menu_Methods {
@@ -25,7 +19,7 @@ public class Menu_Methods {
     private WebView page;
 
     public Scene create_menu(Stage stage) {
-
+        // create layout to position nodes
         VBox vbox = new VBox();
 
         // create a menu
@@ -61,7 +55,6 @@ public class Menu_Methods {
 
         new_item.setOnAction(e -> {
             open_enter_url_window();
-            System.out.println(requested_url);
 
             if (vbox.getChildren().size() == 2) vbox.getChildren().remove(1);
             if ( requested_url != null ) vbox.getChildren().addAll(page);
@@ -92,23 +85,6 @@ public class Menu_Methods {
         File selected_file = file_chooser.showOpenDialog(stage);
 
         return selected_file;
-    }
-
-    public void open_enter_url_window2() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("sample.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 300, 50);
-            Stage stage = new Stage();
-            stage.setTitle("Enter url");
-            stage.getIcons().add(new Image("resources/logo.png"));
-
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Failed to create new window");
-        }
     }
 
     public void open_enter_url_window() {
