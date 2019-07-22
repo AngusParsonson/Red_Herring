@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Url_Window_Controller" hgap="10" vgap="10">
+   <children>
+      <TextField fx:id="urlField" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label text="Enter Url :" />
+      <Button fx:id="generateButton" onKeyPressed="#handleKeyInput" onAction="#handleGenerateButtonAction" mnemonicParsing="false" text="Generate" GridPane.columnIndex="3" />
+   </children>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" prefWidth="60.0" />
+      <ColumnConstraints maxWidth="1.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="187.0" minWidth="186.0" prefWidth="187.0" />
+      <ColumnConstraints />
+   </columnConstraints>
+</GridPane>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.web.WebView?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<GridPane fx:id="gridPane" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller">
+    <VBox fx:id="vbox" prefWidth="900" prefHeight="600">
+            <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput" BorderPane.alignment="CENTER">
+                <menus>
+                    <Menu text="Project">
+                        <items>
+                            <MenuItem onAction="#handleNewAction" text="New" />
+                            <MenuItem onAction="#handleOpenAction" text="Open" />
+                            <MenuItem text="Save" />
+                            <MenuItem text="Save As" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Exit" />
+                        </items>
+                    </Menu>
+                    <Menu text="Edit">
+                        <items>
+                            <MenuItem text="Copy" />
+                            <MenuItem text="Cut" />
+                            <MenuItem text="Paste" />
+                        </items>
+                    </Menu>
+                    <Menu text="View">
+                        <items>
+                            <MenuItem text="Chrome" />
+                            <MenuItem text="Firefox" />
+                            <MenuItem text="Edge" />
+                            <MenuItem text="Internet Explorer" />
+                        </items>
+                    </Menu>
+                    <Menu text="Help">
+                        <items>
+                            <MenuItem disable="true" text="Search" />
+                            <MenuItem text="Online Manual" visible="false" />
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#handleAboutAction" text="About" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <children>
+                <WebView fx:id="webView" prefHeight="600" prefWidth="600" HBox.hgrow="ALWAYS"></WebView>
+            </children>
+        </HBox>
+
+    </VBox>
+    <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" percentHeight="100.0"/>
+    </rowConstraints>
+</GridPane>
