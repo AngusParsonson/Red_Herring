@@ -16,13 +16,13 @@ def getValidTargetURL():
         try:
             targetURL = raw_input('ENTER URL >> ')
             # Check for http(s):// #
-            if 'http://' not in targetURL and 'https://' not in targetURL and 'www.' not in targetURL:
-                targetURL = 'http://www.{}'.format(targetURL)
-            elif 'www.' in targetURL and 'http' not in targetURL:
-                targetURL = 'http://{}'.format(targetURL)
-            elif 'http://' in targetURL and 'www.' not in targetURL or 'https://' in targetURL and 'www.' not in targetURL:
-                targetURL = targetURL.split('//')
-                targetURL = '{}//www.{}'.format(targetURL[0], targetURL[1])
+##            if 'http://' not in targetURL and 'https://' not in targetURL and 'www.' not in targetURL:
+##                targetURL = 'http://www.{}'.format(targetURL)
+##            elif 'www.' in targetURL and 'http' not in targetURL:
+##                targetURL = 'http://{}'.format(targetURL)
+##            elif 'http://' in targetURL and 'www.' not in targetURL or 'https://' in targetURL and 'www.' not in targetURL:
+##                targetURL = targetURL.split('//')
+##                targetURL = '{}//www.{}'.format(targetURL[0], targetURL[1])
             # Check if URL exists #
             print 'Connecting to {}'.format(targetURL)
             connection = requests.get(targetURL)
@@ -30,8 +30,7 @@ def getValidTargetURL():
                 print 'Connection Successful'
                 validURL = True
                 # Format TargetSite Var #
-                targetSite = targetURL.split('/')[-1]
-                targetSite = targetSite.split('.')[1]
+                targetSite = raw_input('ENTER NAME >> ')
                 # Return TargetURL and TargetSite #
                 return targetURL, targetSite
             elif connection.status_code != 200:
@@ -57,19 +56,15 @@ def writeHTMLData(fileData, targetSite):
     # Get Working Directory # 
     workingDir = '{}\\{}\\'.format(os.getcwd(), targetSite)
     # Write HTML to File #
-
-    print fileData.splitlines()
-
-    for line in fileData.splitlines():
-        if len(line) == 0:
-            pass#print line
     
     outputFile = open('{}{}.html'.format(workingDir, targetSite), 'w')
     #print fileData
     outputFile.write(str(fileData))
     outputFile.close()
     
-
+def baseURL(targetURL):
+    urlList = targetURL.split('/')
+    return urlList[0] + '//' + urlList[2]
     
 def scrapeSite(targetURL, targetSite):
     website = requests.get(targetURL)
@@ -80,94 +75,80 @@ def scrapeSite(targetURL, targetSite):
     # Get CSS Files #
     for css in soup.find_all('link'):
         # Find CSS #
-        #try:
-        if css.get('rel') is None:
+        if css.get('href') == None or str(css.get('rel')[0]) != 'stylesheet':
             continue
-        if str(css.get('rel')[0]) == 'stylesheet':
+        urlList = css.get('href').split('/')
+        cssFileName = urlList[len(urlList) - 1]
+        cssFileName = '{}.css'.format(cssFileName.split('.css')[0])                
+        #print cssFileName
+        
+        if css.get('href')[0] == '/':
+            cssData = requests.get(baseURL(targetURL) + css.get('href')).text
             
-            # Removes (.css)?v=xxxxx from File Extensions #
-            if css.get('href') != None:
-                foundCssExt = 0     # 0 By Default
-                for character in range(0, len(str(css.get('href').split('/')[-1]))):
-                    if str(css.get('href').split('/')[-1][character]) == '.':
-                        if str(css.get('href').split('/')[-1][character + 1]) == 'c':
-                               if str(css.get('href').split('/')[-1][character + 2]) == 's':
-                                   if str(css.get('href').split('/')[-1][character + 3]) == 's':
-                                       foundCssExt = character + 4
-                                       #print 'css found at', foundCssExt
-                                   
-                cssFileName = str(css.get('href').split('/')[-1][:foundCssExt])
-                cssFile = open('{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, cssFileName), 'w')
-                #print cssFileName
-
-            if css.get('href')[0] == '/':
-                cssPage = requests.get('{}{}'.format(targetURL, css.get('href')))
-                cssData = cssPage.text
-
-                cssFile.write(cssData.encode('utf-8'))
-                cssFile.close()
-            elif css.get('href')[0] == 'h':
-                cssPage = requests.get('{}'.format(css.get('href')))
-                cssData = cssPage.text
-
-                cssFile.write(cssData.encode('utf-8'))
-                cssFile.close()
-            else:
-                continue
-            css['href'] = 'styles/{}{}'.format(os.path.splitext(os.path.basename(css['href']))[0],
-                                               os.path.splitext(os.path.basename(css['href']))[1])
+        elif str(css.get('href')).startswith('http'):
+            cssData = requests.get(css.get('href')).text
         else:
-            continue
-        #except:
-         #   continue
+            print 'CSS File Format Not Recognised'
+            print(css.get('href'))
+
+        filePath = '{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, cssFileName)
+        indexedFileName = cssFileName
+        index = 1
+        while os.path.isfile(filePath):
+            indexedFileName = '{}_{}'.format(str(index), fileName)
+            filePath = '{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, indexedFileName)
+            index += 1
+        
+        cssFile = open(filePath, 'w')
+        cssFile.write(cssData.encode('utf-8'))
+        cssFile.close()
+        
+        css['href'] = 'styles/{}'.format(indexedFileName)
 
     # Get JavaScript #
     for js in soup.find_all('script'):
-        #try:
-        print js.get('src')
-        # Removes (.js)?v=xxxxx from File Extensions #
-        if js.get('src') != None:
-            foundJsExt = 0     # 0 By Default
-            for character in range(0, len(str(js.get('src').split('/')[-1]))):
-                if str(js.get('src').split('/')[-1][character]) == '.':
-                    if str(js.get('src').split('/')[-1][character + 1]) == 'j':
-                           if str(js.get('src').split('/')[-1][character + 2]) == 's':
-                               foundJsExt = character + 3
-                               #print 'js found at', foundJsExt
-                               
-            jsFileName = str(js.get('src').split('/')[-1][:foundJsExt])
-            jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, jsFileName), 'w')
-            #print jsFileName
-            
-        if str(js.get('src'))[0] == '/' and str(js.get('src'))[1] != '/':
-            jsPage = requests.get('{}{}'.format(targetURL, js.get('src')))
-            jsData = jsPage.text
-    
-            jsFile.write(str(jsData.encode('utf-8')))
-            jsFile.close()
-        elif str(js.get('src'))[0] == '/' and str(js.get('src'))[1] == '/':
-            jsPage = requests.get('http://{}'.format(js.get('src')[2:]))
-            jsData = jsPage.text
-            
-            jsFile.write(str(jsData.encode('utf-8')))
-            jsFile.close()
-        elif str(js.get('src'))[0] == 'h':
-            jsPage = requests.get('{}'.format(js.get('src')))
-            jsData = jsPage.text
 
-            jsFile.write(str(jsData.encode('utf-8')))
-            jsFile.close()
-        else:
+        if js.get('src') == None:
             continue
-        #except:
-         #   continue
-        js['src'] = 'javascript/{}{}'.format(os.path.splitext(os.path.basename(js['src']))[0],
-                                             os.path.splitext(os.path.basename(js['src']))[1])
+        
+        urlList = js.get('src').split('/')
+        jsFileName = urlList[len(urlList) - 1]
+        jsFileName = '{}.js'.format(jsFileName.split('.js')[0])
+        print jsFileName
+                               
+        jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, jsFileName), 'w')
+
+        if str(js.get('src')).startswith('//'):
+            jsData = requests.get('https:' + js.get('src')).text
+        elif str(js.get('src'))[0] == '/':
+            jsData = requests.get(baseURL(targetURL) + js.get('src')).text
+        elif str(js.get('src')).startswith('http'):
+            jsData = requests.get(js.get('src')).text
+        else:
+            print "JS File Format Not Recognised"
+            print(css.get('src'))
+
+        filePath = '{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, jsFileName)
+        indexedFileName = jsFileName
+        index = 1
+        while os.path.isfile(filePath):
+            indexedFileName = '{}_{}'.format(str(index), jsFileName)
+            filePath = '{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, indexedFileName)
+            index += 1
+            
+        jsFile = open('{}\\{}\\javascript\\{}'.format(os.getcwd(), targetSite, indexedFileName), 'w')
+        jsFile.write(str(jsData.encode('utf-8')))
+        jsFile.close()
+        js['src'] = 'javascript/{}'.format(indexedFileName)
 
     # Get Images #
     for index, img in enumerate(soup.find_all('img')):
-        try:
-            if img.get('src')[0] == '/':
+        #try:
+            print img.get('src')
+            if img.get('src').startswith('//'):
+                print baseURL(targetURL).split('/')[0] + img.get('src')
+                img['src'] = baseURL(targetURL).split('/')[0] + img.get('src')
+            elif img.get('src')[0] == '/':
                 #print '{}\\{}\\images\\{}'.format(os.getcwd(), targetSite, img.get('src').split('/')[-1])
                 if not os.path.isfile('{}\\{}\\images\\{}'.format(os.getcwd(), targetSite, img.get('src').split('/')[-1])):
                     urllib.urlretrieve('{}{}'.format(targetURL, img.get('src')), '{}\\{}\\images\\{}'.format(os.getcwd(), targetSite, img.get('src').split('/')[-1]))
@@ -194,8 +175,8 @@ def scrapeSite(targetURL, targetSite):
                                                                 os.path.splitext(os.path.basename(img['src']))[1])
             else:
                 continue
-        except:
-            continue
+        #except:
+         #   continue
     
     #print soup#.encode('utf-8')
     return soup.encode('utf-8')#.prettify().encode('utf-8')
@@ -208,4 +189,3 @@ while True:
     createLocalFiles(targetSite)
     fileData = scrapeSite(targetURL, targetSite)
     writeHTMLData(fileData, targetSite)
-
