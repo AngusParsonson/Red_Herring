@@ -1,0 +1,7 @@
+.tab {
+    -fx-pref-width: 150;
+}
+
+.tab tab-label {
+    -fx-font-size: 20px;
+}

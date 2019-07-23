@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ResourceBundle;
 
 public class Menu_Controller implements Initializable {
@@ -93,12 +94,19 @@ public class Menu_Controller implements Initializable {
             FileChooser file_chooser = new FileChooser();
 
             File selected_file = file_chooser.showOpenDialog(menuBar.getScene().getWindow());
+            String url = null;
+            try {
+                url = selected_file.toURI().toURL().toString();
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+            }
+            open_browser_with_url(url);
+
         }
 
         @Override
         public void initialize(java.net.URL arg0, ResourceBundle arg1) {
             menuBar.setFocusTraversable(true);
-
         }
 
         public void open_browser_with_url(String url) {
