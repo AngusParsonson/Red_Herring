@@ -165,11 +165,11 @@
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="266" />
-    <option name="y" value="102" />
-    <option name="width" value="1612" />
-    <option name="height" value="876" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="265" />
+    <option name="y" value="101" />
+    <option name="width" value="1613" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -230,6 +230,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -237,13 +238,16 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Libraries/javafx-sdk-11.0.2/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
@@ -289,7 +293,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Red_Herring" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Admin\Documents\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml --add-modules=javafx.web" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Angus Parsonson\Documents\Computer Science\Libraries\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml --add-modules javafx.web " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -408,7 +412,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Documents/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.graphics.jar!/com/sun/glass/ui/View.class">
+    <entry file="jar://$PROJECT_DIR$/../../../../../../openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.graphics.jar!/com/sun/glass/ui/View.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Input_Methods.java" />

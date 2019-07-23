@@ -12,12 +12,17 @@
    <children>
       <TextField fx:id="urlField" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Label text="Enter Url :" />
-      <Button fx:id="generateButton" onKeyPressed="#handleKeyInput" onAction="#handleGenerateButtonAction" mnemonicParsing="false" text="Generate" GridPane.columnIndex="3" />
+      <Button fx:id="generateButton" onAction="#handleGenerateButtonAction" mnemonicParsing="false" text="Generate" GridPane.columnIndex="3" />
    </children>
+   
    <columnConstraints>
       <ColumnConstraints minWidth="10.0" prefWidth="60.0" />
       <ColumnConstraints maxWidth="1.0" minWidth="0.0" prefWidth="0.0" />
       <ColumnConstraints maxWidth="187.0" minWidth="186.0" prefWidth="187.0" />
       <ColumnConstraints />
    </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>
