@@ -12,8 +12,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        primaryStage.setTitle("fxml_practice");
-        primaryStage.setScene(new Scene(root, 900, 600));
+        primaryStage.setTitle("Red Herring");
+        Scene scene = new Scene(root, 900, 600);
+        scene.getStylesheets().add("resources/css/menu.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
