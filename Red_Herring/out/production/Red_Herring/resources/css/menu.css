@@ -5,3 +5,21 @@
 .tab tab-label {
     -fx-font-size: 20px;
 }
+
+.toggle-button {
+    -fx-background-color: transparent;
+}
+
+.toggle-button:hover {
+    -fx-background-color: lightgray;
+}
+
+.toggle-button:selected {
+  -fx-background-color: darkgray;
+}
+
+
+
+.line {
+  -fx-fill: grey;
+}

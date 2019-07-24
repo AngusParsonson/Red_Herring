@@ -4,18 +4,16 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.web.WebView?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.layout.AnchorPane?>
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller" styleClass="/resources/css/menu.css">
+<BorderPane styleClass="/resources/css/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller">
     <top>
         <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
             <menus>
@@ -61,7 +59,19 @@
             <tabs>
                 <Tab text="Project 1">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100">
+                           <children>
+                              <ToggleButton mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Deploy" />
+                               <Line endX="100.0" startX="-100.0" />
+                               <ToggleButton mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="View" />
+                               <Line endX="100.0" startX="-100.0" />
+                              <ToggleButton mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Edit" />
+                              <Line endX="100.0" startX="-100.0" />
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="Project 2">
@@ -74,6 +84,6 @@
     </left>
 
     <center>
-        <WebView fx:id="webView" layoutX="100.0" layoutY="176.0" prefHeight="400"></WebView>
+        <WebView fx:id="webView" layoutX="100.0" layoutY="176.0" prefHeight="400" />
     </center>
 </BorderPane>
