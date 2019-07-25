@@ -6,10 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -17,19 +21,35 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 public class Menu_Controller implements Initializable {
 
     /** All functionality is wrapped in a separate function to allow for use in key shortcuts **/
     @FXML
-    public GridPane gridPane;
-
-    @FXML
     private WebView webView;
 
     @FXML
     private MenuBar menuBar;
+
+    @FXML
+    private VBox tab_vbox;
+
+    @FXML
+    private ToggleButton deploy_button;
+    @FXML
+    private ToggleButton view_button;
+    @FXML
+    private ToggleButton edit_button;
+
+    @FXML
+    private TabPane tab_pane;
+
+    private List<Tab> tab_list = new ArrayList<Tab>();
+    private int current_tab = 0;
 
     /** Handle key shortcut inputs **/
     @FXML
@@ -65,6 +85,34 @@ public class Menu_Controller implements Initializable {
     @FXML
     private void handleOpenAction(final ActionEvent e) {
         provideOpenFunctionality(e);
+    }
+
+    @FXML
+    private void handleDeployButtonAction(final ActionEvent e) {
+        if (deploy_button.isSelected()) {
+            view_button.setSelected(false);
+            edit_button.setSelected(false);
+            open_new_tab("Project 3");
+        }
+        else;
+    }
+
+    @FXML
+    private void handleViewButtonAction(final ActionEvent e) {
+        if (view_button.isSelected()) {
+            deploy_button.setSelected(false);
+            edit_button.setSelected(false);
+        }
+        else;
+    }
+
+    @FXML
+    private void handleEditButtonAction(final ActionEvent e) {
+        if (edit_button.isSelected()) {
+            view_button.setSelected(false);
+            deploy_button.setSelected(false);
+        }
+        else;
     }
 
     private void provideAboutFunctionality() {
@@ -111,5 +159,15 @@ public class Menu_Controller implements Initializable {
 
     public void open_browser_with_url(String url) {
         webView.getEngine().load(url);
+    }
+
+    public void open_new_tab(String project_name) {
+        tab_list.add(new Tab(project_name));
+        current_tab = tab_list.size() - 1;
+
+        tab_list.get(current_tab).setContent(tab_vbox);
+
+        tab_pane.getTabs().add(tab_list.get(current_tab));
+        tab_pane.getSelectionModel().select(tab_list.get(current_tab));
     }
 }
