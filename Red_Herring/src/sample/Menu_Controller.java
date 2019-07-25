@@ -12,21 +12,16 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Menu_Controller implements Initializable {
 
@@ -49,8 +44,6 @@ public class Menu_Controller implements Initializable {
 
     @FXML
     private TabPane tab_pane;
-
-    private int current_tab = 0;
 
     /** Handle key shortcut inputs **/
     @FXML
@@ -184,6 +177,10 @@ public class Menu_Controller implements Initializable {
 
     public void open_browser_with_url(String url) {
         webView.getEngine().load(url);
+    }
+
+    public void open_text_view_with_url(String url) {
+
     }
 
     public void open_new_tab(String project_name) {
