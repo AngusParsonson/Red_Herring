@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+<GridPane onKeyPressed="#handleKeyInput" alignment="center" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
           xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Url_Window_Controller" hgap="10" vgap="10">
    <children>
       <TextField fx:id="urlField" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />

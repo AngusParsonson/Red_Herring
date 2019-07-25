@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +11,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.InputEvent;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Menu_Controller implements Initializable {
 
@@ -48,7 +50,6 @@ public class Menu_Controller implements Initializable {
     @FXML
     private TabPane tab_pane;
 
-    private List<Tab> tab_list = new ArrayList<Tab>();
     private int current_tab = 0;
 
     /** Handle key shortcut inputs **/
@@ -65,6 +66,10 @@ public class Menu_Controller implements Initializable {
             if (keyEvent.isControlDown() && keyEvent.getCode() == KeyCode.N)
             {
                 provideNewFunctionality();
+            }
+            if (keyEvent.isControlDown() && keyEvent.getCode() == KeyCode.O)
+            {
+                provideOpenFunctionality();
             }
         }
     }
@@ -84,7 +89,7 @@ public class Menu_Controller implements Initializable {
     /** Logic for Open menu option **/
     @FXML
     private void handleOpenAction(final ActionEvent e) {
-        provideOpenFunctionality(e);
+        provideOpenFunctionality();
     }
 
     @FXML
@@ -92,7 +97,6 @@ public class Menu_Controller implements Initializable {
         if (deploy_button.isSelected()) {
             view_button.setSelected(false);
             edit_button.setSelected(false);
-            open_new_tab("Project 3");
         }
         else;
     }
@@ -136,25 +140,46 @@ public class Menu_Controller implements Initializable {
         } catch (IOException e) {
             System.out.println("Failed to create new window");
         }
+        open_new_tab("Project " + tab_pane.getTabs().size());
     }
 
-    private void provideOpenFunctionality(ActionEvent e) {
+    private void provideOpenFunctionality() {
         FileChooser file_chooser = new FileChooser();
 
         File selected_file = file_chooser.showOpenDialog(menuBar.getScene().getWindow());
         String url = null;
+
         try {
             url = selected_file.toURI().toURL().toString();
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
+        } catch (NullPointerException ex) {
+            // No file was selected, no need to throw exception
         }
-        open_browser_with_url(url);
+        String project_name = selected_file.getName().split("\\.")[0];
 
+        open_new_tab(project_name);
+        open_browser_with_url(url);
     }
 
     @Override
     public void initialize(java.net.URL arg0, ResourceBundle arg1) {
         menuBar.setFocusTraversable(true);
+        tab_pane.getTabs().clear();
+
+        tab_pane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
+                try {
+                    oldTab.setContent(null);
+                } catch (NullPointerException ex){}
+                try {
+                    newTab.setContent(tab_vbox);
+                } catch (NullPointerException ex){}
+            }
+        });
+
     }
 
     public void open_browser_with_url(String url) {
@@ -162,12 +187,6 @@ public class Menu_Controller implements Initializable {
     }
 
     public void open_new_tab(String project_name) {
-        tab_list.add(new Tab(project_name));
-        current_tab = tab_list.size() - 1;
-
-        tab_list.get(current_tab).setContent(tab_vbox);
-
-        tab_pane.getTabs().add(tab_list.get(current_tab));
-        tab_pane.getSelectionModel().select(tab_list.get(current_tab));
+        tab_pane.getTabs().add(new Tab(project_name));
     }
 }

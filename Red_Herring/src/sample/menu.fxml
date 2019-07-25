@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane fx:id="border_pane" styleClass="/resources/css/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller">
+<BorderPane fx:id="border_pane" onKeyPressed="#handleKeyInput" styleClass="/resources/css/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller">
     <top>
         <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
             <menus>
@@ -57,26 +57,21 @@
     <left>
         <TabPane fx:id="tab_pane" side="LEFT">
             <tabs>
-                <Tab fx:id="tab" text="Project 1">
+                <Tab fx:id="tab" text="Project 0">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox fx:id="tab_vbox" prefHeight="200.0" prefWidth="100">
-                           <children>
-                              <ToggleButton fx:id="deploy_button" onAction="#handleDeployButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Deploy" />
-                               <Line endX="100.0" startX="-100.0" />
-                               <ToggleButton fx:id="view_button" onAction="#handleViewButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="View" />
-                               <Line endX="100.0" startX="-100.0" />
-                              <ToggleButton fx:id="edit_button" onAction="#handleEditButtonAction"  mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Edit" />
-                              <Line endX="100.0" startX="-100.0" />
-                           </children>
-                        </VBox>
+                         <VBox fx:id="tab_vbox" prefHeight="200.0" prefWidth="100">
+                             <children>
+                                 <ToggleButton fx:id="deploy_button" onAction="#handleDeployButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Deploy" />
+                                 <Line endX="100.0" startX="-100.0" />
+                                 <ToggleButton fx:id="view_button" onAction="#handleViewButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="View" />
+                                 <Line endX="100.0" startX="-100.0" />
+                                 <ToggleButton fx:id="edit_button" onAction="#handleEditButtonAction"  mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Edit" />
+                                 <Line endX="100.0" startX="-100.0" />
+                             </children>
+                         </VBox>
                      </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Project 2">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
             </tabs>
