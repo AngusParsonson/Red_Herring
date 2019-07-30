@@ -35,11 +35,7 @@ public class Menu_Controller implements Initializable {
 
     @FXML
     private TextArea text_area;
-
-    @FXML
-    private Button deploy_button;
-    @FXML
-    private Button update_button;
+    
     @FXML
     private ToggleButton view_button;
     @FXML
