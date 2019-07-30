@@ -1,9 +1,5 @@
-<!DOCTYPE doctype html>
-
-<!--[if lt IE 7]>   <html class="no-js ie6 lt-ie7 lt-ie8 lt-ie9">   <![endif]-->
-<!--[if IE 7]>      <html class="no-js ie7 lt-ie8 lt-ie9">          <![endif]-->
-<!--[if IE 8]>      <html class="no-js ie8 lt-ie9">                 <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" dir="ltr" lang="en"> <!--<![endif]-->
+<!DOCTYPE html>
+<!--[if lt IE 7]>   <html class="no-js ie6 lt-ie7 lt-ie8 lt-ie9">   <![endif]--><!--[if IE 7]>      <html class="no-js ie7 lt-ie8 lt-ie9">          <![endif]--><!--[if IE 8]>      <html class="no-js ie8 lt-ie9">                 <![endif]--><!--[if gt IE 8]><!--><html class="no-js" dir="ltr" lang="en"> <!--<![endif]-->
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
@@ -19,8 +15,8 @@
 <meta content="on" http-equiv="cleartype"/>
 <meta content="false" http-equiv="imagetoolbar"/>
 <script src="javascript/modernizr.js"></script>
-<link href="styles/style.67f4b30f7483.css" rel="stylesheet" title="default" type="text/css">
-<link href="styles/mq.3ae8e02ece5b.css" media="not print, braille, embossed, speech, tty" rel="stylesheet" type="text/css"/>
+<link href="styles/1_style.67f4b30f7483.css" rel="stylesheet" title="default" type="text/css"/>
+<link href="styles/2_mq.3ae8e02ece5b.css" media="not print, braille, embossed, speech, tty" rel="stylesheet" type="text/css"/>
 <!--[if (lte IE 8)&(!IEMobile)]>
     <link href="/static/stylesheets/no-mq.fcf414dc68a3.css" rel="stylesheet" type="text/css" media="screen" />
     
@@ -73,7 +69,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
     </script>
-</link></head>
+</head>
 <body class="python home" id="homepage">
 <div id="touchnav-wrapper">
 <div class="do-not-print" id="nojs">
@@ -113,7 +109,7 @@
 <a href="/jobs/" title="Python Job Board">Jobs</a>
 </li>
 <li class="shop-meta">
-<a href="/community/" title="Python Community">Hello</a>
+<a href="/community/" title="Python Community">Community</a>
 </li>
 </ul>
 <a aria-hidden="true" class="jump-link" href="#top" id="python-network">
@@ -265,107 +261,67 @@
 </ul>
 <ul class="slides menu">
 <li>
-<div class="slide-code"><pre><code><span class="comment"># Python 3: Fibonacci series up to n</span>
-
-&gt;&gt;&gt; def fib(n):
-
-&gt;&gt;&gt;     a, b = 0, 1
-
-&gt;&gt;&gt;     while a &lt; n:
-
-&gt;&gt;&gt;         print(a, end=' ')
-
-&gt;&gt;&gt;         a, b = b, a+b
-
-&gt;&gt;&gt;     print()
-
-&gt;&gt;&gt; fib(1000)
-
+<div class="slide-code"><pre><code><span class="comment"># Python 3: Fibonacci series up to n</span>
+&gt;&gt;&gt; def fib(n):
+&gt;&gt;&gt;     a, b = 0, 1
+&gt;&gt;&gt;     while a &lt; n:
+&gt;&gt;&gt;         print(a, end=' ')
+&gt;&gt;&gt;         a, b = b, a+b
+&gt;&gt;&gt;     print()
+&gt;&gt;&gt; fib(1000)
 <span class="output">0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</span></code></pre></div>
 <div class="slide-copy"><h1>Functions Defined</h1>
 <p>The core of extensible programming is defining functions. Python allows mandatory and optional arguments, keyword arguments, and even arbitrary argument lists. <a href="//docs.python.org/3/tutorial/controlflow.html#defining-functions">More about defining functions in Python 3</a></p></div>
 </li>
 <li>
-<div class="slide-code"><pre><code><span class="comment"># Python 3: List comprehensions</span>
-
-&gt;&gt;&gt; fruits = ['Banana', 'Apple', 'Lime']
-
-&gt;&gt;&gt; loud_fruits = [fruit.upper() for fruit in fruits]
-
-&gt;&gt;&gt; print(loud_fruits)
-
-<span class="output">['BANANA', 'APPLE', 'LIME']</span>
-
-
-
-<span class="comment"># List and the enumerate function</span>
-
-&gt;&gt;&gt; list(enumerate(fruits))
-
+<div class="slide-code"><pre><code><span class="comment"># Python 3: List comprehensions</span>
+&gt;&gt;&gt; fruits = ['Banana', 'Apple', 'Lime']
+&gt;&gt;&gt; loud_fruits = [fruit.upper() for fruit in fruits]
+&gt;&gt;&gt; print(loud_fruits)
+<span class="output">['BANANA', 'APPLE', 'LIME']</span>
+
+<span class="comment"># List and the enumerate function</span>
+&gt;&gt;&gt; list(enumerate(fruits))
 <span class="output">[(0, 'Banana'), (1, 'Apple'), (2, 'Lime')]</span></code></pre></div>
 <div class="slide-copy"><h1>Compound Data Types</h1>
 <p>Lists (known as arrays in other languages) are one of the compound data types that Python understands. Lists can be indexed, sliced and manipulated with other built-in functions. <a href="//docs.python.org/3/tutorial/introduction.html#lists">More about lists in Python 3</a></p></div>
 </li>
 <li>
-<div class="slide-code"><pre><code><span class="comment"># Python 3: Simple arithmetic</span>
-
-&gt;&gt;&gt; 1 / 2
-
-<span class="output">0.5</span>
-
-&gt;&gt;&gt; 2 ** 3
-
-<span class="output">8</span>
-
-&gt;&gt;&gt; 17 / 3  <span class="comment"># classic division returns a float</span>
-
-<span class="output">5.666666666666667</span>
-
-&gt;&gt;&gt; 17 // 3  <span class="comment"># floor division</span>
-
+<div class="slide-code"><pre><code><span class="comment"># Python 3: Simple arithmetic</span>
+&gt;&gt;&gt; 1 / 2
+<span class="output">0.5</span>
+&gt;&gt;&gt; 2 ** 3
+<span class="output">8</span>
+&gt;&gt;&gt; 17 / 3  <span class="comment"># classic division returns a float</span>
+<span class="output">5.666666666666667</span>
+&gt;&gt;&gt; 17 // 3  <span class="comment"># floor division</span>
 <span class="output">5</span></code></pre></div>
 <div class="slide-copy"><h1>Intuitive Interpretation</h1>
 <p>Calculations are simple with Python, and expression syntax is straightforward: the operators <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code> work as expected; parentheses <code>()</code> can be used for grouping. <a href="http://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator">More about simple math functions in Python 3</a>.</p></div>
 </li>
 <li>
-<div class="slide-code"><pre><code><span class="comment"># Python 3: Simple output (with Unicode)</span>
-
-&gt;&gt;&gt; print("Hello, I'm Python!")
-
-<span class="output">Hello, I'm Python!</span>
-
-
-
-<span class="comment"># Input, assignment</span>
-
-&gt;&gt;&gt; name = input('What is your name?\n')
-
-&gt;&gt;&gt; print('Hi, %s.' % name)
-
-<span class="output">What is your name?
-
-Python
-
+<div class="slide-code"><pre><code><span class="comment"># Python 3: Simple output (with Unicode)</span>
+&gt;&gt;&gt; print("Hello, I'm Python!")
+<span class="output">Hello, I'm Python!</span>
+
+<span class="comment"># Input, assignment</span>
+&gt;&gt;&gt; name = input('What is your name?\n')
+&gt;&gt;&gt; print('Hi, %s.' % name)
+<span class="output">What is your name?
+Python
 Hi, Python.</span></code></pre></div>
 <div class="slide-copy"><h1>Quick &amp; Easy to Learn</h1>
 <p>Experienced programmers in any other language can pick up Python very quickly, and beginners find the clean syntax and indentation structure easy to learn. <a href="//docs.python.org/3/tutorial/">Whet your appetite</a> with our Python 3 overview.</p>
 </div>
 </li>
 <li>
-<div class="slide-code"><pre><code><span class="comment"># For loop on a list</span>
-
-&gt;&gt;&gt; numbers = [2, 4, 6, 8]
-
-&gt;&gt;&gt; product = 1
-
-&gt;&gt;&gt; for number in numbers:
-
-...    product = product * number
-
-... 
-
-&gt;&gt;&gt; print('The product is:', product)
-
+<div class="slide-code"><pre><code><span class="comment"># For loop on a list</span>
+&gt;&gt;&gt; numbers = [2, 4, 6, 8]
+&gt;&gt;&gt; product = 1
+&gt;&gt;&gt; for number in numbers:
+...    product = product * number
+... 
+&gt;&gt;&gt; print('The product is:', product)
 <span class="output">The product is: 384</span></code></pre></div>
 <div class="slide-copy"><h1>All the Flow You’d Expect</h1>
 <p>Python knows the usual control flow statements that other languages speak — <code>if</code>, <code>for</code>, <code>while</code> and <code>range</code> — with some of its own twists, of course. <a href="//docs.python.org/3/tutorial/controlflow.html">More control flow tools in Python 3</a></p></div>
@@ -476,21 +432,16 @@ Hi, Python.</span></code></pre></div>
 <h2 class="widget-title"><span aria-hidden="true" class="icon-python"></span>Use Python for…</h2>
 <p class="give-me-more"><a href="/about/apps" title="More Applications">More</a></p>
 <ul class="menu">
-<li><b>Web Development</b>:
-
+<li><b>Web Development</b>:
         <span class="tag-wrapper"><a class="tag" href="http://www.djangoproject.com/">Django</a>, <a class="tag" href="http://www.pylonsproject.org/">Pyramid</a>, <a class="tag" href="http://bottlepy.org">Bottle</a>, <a class="tag" href="http://tornadoweb.org">Tornado</a>, <a class="tag" href="http://flask.pocoo.org/">Flask</a>, <a class="tag" href="http://www.web2py.com/">web2py</a></span></li>
-<li><b>GUI Development</b>:
-
+<li><b>GUI Development</b>:
         <span class="tag-wrapper"><a class="tag" href="http://wiki.python.org/moin/TkInter">tkInter</a>, <a class="tag" href="https://wiki.gnome.org/Projects/PyGObject">PyGObject</a>, <a class="tag" href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">PyQt</a>, <a class="tag" href="https://wiki.qt.io/PySide">PySide</a>, <a class="tag" href="https://kivy.org/">Kivy</a>, <a class="tag" href="http://www.wxpython.org/">wxPython</a></span></li>
-<li><b>Scientific and Numeric</b>:
-
+<li><b>Scientific and Numeric</b>:
         <span class="tag-wrapper">
 <a class="tag" href="http://www.scipy.org">SciPy</a>, <a class="tag" href="http://pandas.pydata.org/">Pandas</a>, <a class="tag" href="http://ipython.org">IPython</a></span></li>
-<li><b>Software Development</b>:
-
+<li><b>Software Development</b>:
         <span class="tag-wrapper"><a class="tag" href="http://buildbot.net/">Buildbot</a>, <a class="tag" href="http://trac.edgewall.org/">Trac</a>, <a class="tag" href="http://roundup.sourceforge.net/">Roundup</a></span></li>
-<li><b>System Administration</b>:
-
+<li><b>System Administration</b>:
         <span class="tag-wrapper"><a class="tag" href="http://www.ansible.com">Ansible</a>, <a class="tag" href="http://www.saltstack.com">Salt</a>, <a class="tag" href="https://www.openstack.org">OpenStack</a></span></li>
 </ul>
 </div><!-- end .shrubbery -->

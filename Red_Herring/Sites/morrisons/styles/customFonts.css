@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'MorrisonsAgenda';
+    src: url(https://groceries.morrisons.com/webshop/static/fonts/'_morrisonsagenda-light_webtt-webfont.woff') format('woff'),
+    url(https://groceries.morrisons.com/webshop/static/fonts/'_morrisonsagenda-light_webtt-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MorrisonsAgenda';
+    src: url(https://groceries.morrisons.com/webshop/static/fonts/'_morrisonsagenda-semi_bold_webtt-webfont.woff') format('woff'),
+    url(https://groceries.morrisons.com/webshop/static/fonts/'_morrisonsagenda-semi_bold_webtt-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

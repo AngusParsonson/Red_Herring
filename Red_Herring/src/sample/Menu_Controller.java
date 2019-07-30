@@ -106,7 +106,6 @@ public class Menu_Controller implements Initializable {
         fold.delete();
         File fnew=new File(file_location);
         String source = text_area.getText();
-        System.out.println(source);
 
         try {
             FileWriter f2 = new FileWriter(fnew, false);
@@ -151,7 +150,7 @@ public class Menu_Controller implements Initializable {
     }
 
     private void provideAboutFunctionality() {
-        System.out.println("You clicked on About!");
+
     }
 
     private void provideNewFunctionality() {
@@ -169,7 +168,7 @@ public class Menu_Controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            System.out.println("Failed to create new window");
+            e.printStackTrace();
         }
         open_new_tab("Project " + tab_pane.getTabs().size(), "url");
     }
