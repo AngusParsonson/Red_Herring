@@ -16,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +38,8 @@ public class Menu_Controller implements Initializable {
     private ToggleButton deploy_button;
     @FXML
     private ToggleButton view_button;
+    @FXML
+    private ToggleButton browser_button;
     @FXML
     private ToggleButton edit_button;
 
@@ -90,6 +91,7 @@ public class Menu_Controller implements Initializable {
         if (deploy_button.isSelected()) {
             view_button.setSelected(false);
             edit_button.setSelected(false);
+            browser_button.setSelected(false);
         }
         else;
     }
@@ -99,6 +101,19 @@ public class Menu_Controller implements Initializable {
         if (view_button.isSelected()) {
             deploy_button.setSelected(false);
             edit_button.setSelected(false);
+            browser_button.setSelected(false);
+        }
+        else;
+    }
+
+    @FXML
+    private void handleBrowserButtonAction(final ActionEvent e) {
+        if (browser_button.isSelected()) {
+            view_button.setSelected(false);
+            deploy_button.setSelected(false);
+            edit_button.setSelected(false);
+
+            open_browser_with_url("https://www.google.com");
         }
         else;
     }
@@ -108,6 +123,7 @@ public class Menu_Controller implements Initializable {
         if (edit_button.isSelected()) {
             view_button.setSelected(false);
             deploy_button.setSelected(false);
+            browser_button.setSelected(false);
         }
         else;
     }

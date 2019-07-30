@@ -68,6 +68,8 @@
                                  <Line endX="100.0" startX="-100.0" />
                                  <ToggleButton fx:id="view_button" onAction="#handleViewButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="View" />
                                  <Line endX="100.0" startX="-100.0" />
+                                 <ToggleButton fx:id="browser_button" onAction="#handleBrowserButtonAction"  mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Browser" />
+                                 <Line endX="100.0" startX="-100.0" />
                                  <ToggleButton fx:id="edit_button" onAction="#handleEditButtonAction"  mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Edit" />
                                  <Line endX="100.0" startX="-100.0" />
                              </children>
