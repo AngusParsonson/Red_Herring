@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Menu_Controller implements Initializable {
@@ -46,6 +47,8 @@ public class Menu_Controller implements Initializable {
     @FXML
     private ToggleButton edit_button;
 
+    /** The ID for the FXML tab objects are set to the path of the file the tab is corresponds to - this avoids
+       having to create a whole new custom tab class **/
     @FXML
     private TabPane tab_pane;
 
@@ -189,7 +192,7 @@ public class Menu_Controller implements Initializable {
         String project_name = selected_file.getName().split("\\.")[0];
         file_location = selected_file.toString();
 
-        open_new_tab(project_name, url);
+        open_new_tab(project_name, file_location);
         open_browser_with_url(url);
         open_text_view_with_location(file_location);
     }
@@ -208,8 +211,11 @@ public class Menu_Controller implements Initializable {
                 } catch (NullPointerException ex){}
                 try {
                     newTab.setContent(tab_vbox);
-                    open_browser_with_url(newTab.getId());
-                } catch (NullPointerException ex){}
+                    open_browser_with_url(new File (newTab.getId()).toURI().toURL().toString());
+                    open_text_view_with_location(newTab.getId());
+                } catch (NullPointerException ex){} catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
