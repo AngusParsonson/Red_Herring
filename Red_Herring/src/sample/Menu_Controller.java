@@ -171,7 +171,7 @@ public class Menu_Controller implements Initializable {
 
         open_new_tab(project_name);
         open_browser_with_url(url);
-        open_text_view_with_url(selected_file.toString());
+        open_text_view_with_location(selected_file.toString());
     }
 
     @Override
@@ -198,10 +198,10 @@ public class Menu_Controller implements Initializable {
         webView.getEngine().load(url);
     }
 
-    public void open_text_view_with_url(String url) {
+    public void open_text_view_with_location(String location) {
         String content = "";
         try {
-            BufferedReader in = new BufferedReader(new FileReader(url));
+            BufferedReader in = new BufferedReader(new FileReader(location));
             String str;
             while ((str = in.readLine()) != null) {
                 content += str;
