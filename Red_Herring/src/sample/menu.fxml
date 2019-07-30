@@ -14,6 +14,7 @@
 <?import javafx.scene.web.WebView?>
 
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
 <BorderPane fx:id="border_pane" onKeyPressed="#handleKeyInput" styleClass="/resources/css/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller">
     <top>
         <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
@@ -64,7 +65,9 @@
                      <children>
                          <VBox fx:id="tab_vbox" prefHeight="200.0" prefWidth="100">
                              <children>
-                                 <ToggleButton fx:id="deploy_button" onAction="#handleDeployButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Deploy" />
+                                 <Button fx:id="deploy_button" onAction="#handleDeployButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Deploy" />
+                                 <Line endX="100.0" startX="-100.0" />
+                                 <Button fx:id="update_button" onAction="#handleUpdateButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Update" />
                                  <Line endX="100.0" startX="-100.0" />
                                  <ToggleButton fx:id="view_button" onAction="#handleViewButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="View" />
                                  <Line endX="100.0" startX="-100.0" />

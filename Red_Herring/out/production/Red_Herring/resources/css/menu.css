@@ -15,11 +15,14 @@
 }
 
 .toggle-button:selected {
-  -fx-background-color: darkgray;
+    -fx-background-color: darkgray;
 }
 
-
+.button {
+    -fx-focus-color: grey;
+    -fx-faint-focus-color: transparent;
+}
 
 .line {
-  -fx-fill: grey;
+    -fx-fill: grey;
 }

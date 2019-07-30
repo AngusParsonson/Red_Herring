@@ -14,16 +14,15 @@ import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.util.ResourceBundle;
 
 public class Menu_Controller implements Initializable {
 
     /** All functionality is wrapped in a separate function to allow for use in key shortcuts **/
+    String file_location;
+
     @FXML
     private WebView webView;
 
@@ -37,7 +36,9 @@ public class Menu_Controller implements Initializable {
     private TextArea text_area;
 
     @FXML
-    private ToggleButton deploy_button;
+    private Button deploy_button;
+    @FXML
+    private Button update_button;
     @FXML
     private ToggleButton view_button;
     @FXML
@@ -90,20 +91,41 @@ public class Menu_Controller implements Initializable {
 
     @FXML
     private void handleDeployButtonAction(final ActionEvent e) {
-        if (deploy_button.isSelected()) {
-            view_button.setSelected(false);
-            edit_button.setSelected(false);
-            browser_button.setSelected(false);
+        edit_button.setSelected(false);
+        browser_button.setSelected(false);
+        view_button.setSelected(false);
+    }
+
+    @FXML
+    private void handleUpdateButtonAction(final ActionEvent e) throws MalformedURLException {
+        edit_button.setSelected(false);
+        browser_button.setSelected(false);
+        view_button.setSelected(false);
+
+        File fold=new File(file_location);
+        fold.delete();
+        File fnew=new File(file_location);
+        String source = text_area.getText();
+        System.out.println(source);
+
+        try {
+            FileWriter f2 = new FileWriter(fnew, false);
+            f2.write(source);
+            f2.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        else;
+        open_browser_with_url(fnew.toURI().toURL().toString());
     }
 
     @FXML
     private void handleViewButtonAction(final ActionEvent e) {
         if (view_button.isSelected()) {
-            deploy_button.setSelected(false);
             edit_button.setSelected(false);
             browser_button.setSelected(false);
+
+            String url = tab_pane.getSelectionModel().getSelectedItem().getId();
+            open_browser_with_url(url);
         }
         else;
     }
@@ -112,7 +134,6 @@ public class Menu_Controller implements Initializable {
     private void handleBrowserButtonAction(final ActionEvent e) {
         if (browser_button.isSelected()) {
             view_button.setSelected(false);
-            deploy_button.setSelected(false);
             edit_button.setSelected(false);
 
             open_browser_with_url("https://www.google.com");
@@ -124,7 +145,6 @@ public class Menu_Controller implements Initializable {
     private void handleEditButtonAction(final ActionEvent e) {
         if (edit_button.isSelected()) {
             view_button.setSelected(false);
-            deploy_button.setSelected(false);
             browser_button.setSelected(false);
         }
         else;
@@ -151,7 +171,7 @@ public class Menu_Controller implements Initializable {
         } catch (IOException e) {
             System.out.println("Failed to create new window");
         }
-        open_new_tab("Project " + tab_pane.getTabs().size());
+        open_new_tab("Project " + tab_pane.getTabs().size(), "url");
     }
 
     private void provideOpenFunctionality() {
@@ -168,10 +188,11 @@ public class Menu_Controller implements Initializable {
             // No file was selected, no need to throw exception
         }
         String project_name = selected_file.getName().split("\\.")[0];
+        file_location = selected_file.toString();
 
-        open_new_tab(project_name);
+        open_new_tab(project_name, url);
         open_browser_with_url(url);
-        open_text_view_with_location(selected_file.toString());
+        open_text_view_with_location(file_location);
     }
 
     @Override
@@ -188,6 +209,7 @@ public class Menu_Controller implements Initializable {
                 } catch (NullPointerException ex){}
                 try {
                     newTab.setContent(tab_vbox);
+                    open_browser_with_url(newTab.getId());
                 } catch (NullPointerException ex){}
             }
         });
@@ -213,7 +235,10 @@ public class Menu_Controller implements Initializable {
         text_area.setText(content);
     }
 
-    public void open_new_tab(String project_name) {
-        tab_pane.getTabs().add(new Tab(project_name));
+    public void open_new_tab(String project_name, String id) {
+        Tab tab = new Tab(project_name);
+        tab.setId(id);
+        tab_pane.getTabs().add(tab);
+        tab_pane.getSelectionModel().select(tab);
     }
 }
