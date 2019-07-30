@@ -81,7 +81,7 @@
         </TabPane>
     </left>
     <bottom>
-        <TextArea fx:id="text_area"  ></TextArea>
+        <TextArea fx:id="text_area"  prefHeight="300"></TextArea>
     </bottom>
 
     <center>

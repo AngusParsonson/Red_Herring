@@ -7,17 +7,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ResourceBundle;
@@ -33,6 +32,9 @@ public class Menu_Controller implements Initializable {
 
     @FXML
     private VBox tab_vbox;
+
+    @FXML
+    private TextArea text_area;
 
     @FXML
     private ToggleButton deploy_button;
@@ -169,6 +171,7 @@ public class Menu_Controller implements Initializable {
 
         open_new_tab(project_name);
         open_browser_with_url(url);
+        open_text_view_with_url(selected_file.toString());
     }
 
     @Override
@@ -196,7 +199,18 @@ public class Menu_Controller implements Initializable {
     }
 
     public void open_text_view_with_url(String url) {
-
+        String content = "";
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(url));
+            String str;
+            while ((str = in.readLine()) != null) {
+                content += str;
+                content += "\n";
+            }
+            in.close();
+        } catch (IOException e) {
+        }
+        text_area.setText(content);
     }
 
     public void open_new_tab(String project_name) {
