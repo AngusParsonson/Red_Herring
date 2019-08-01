@@ -117,13 +117,13 @@ public class Menu_Controller implements Initializable {
     }
 
     @FXML
-    private void handleViewButtonAction(final ActionEvent e) {
+    private void handleViewButtonAction(final ActionEvent e) throws MalformedURLException {
         if (view_button.isSelected()) {
             edit_button.setSelected(false);
             browser_button.setSelected(false);
 
-            String url = tab_pane.getSelectionModel().getSelectedItem().getId();
-            open_browser_with_url(url);
+            Tab tab = tab_pane.getSelectionModel().getSelectedItem();
+            open_browser_with_url(new File (tab.getId()).toURI().toURL().toString());
         }
         else;
     }
@@ -180,17 +180,20 @@ public class Menu_Controller implements Initializable {
 
         try {
             url = selected_file.toURI().toURL().toString();
+
+            String project_name = selected_file.getName().split("\\.")[0];
+            file_location = selected_file.toString();
+
+            open_new_tab(project_name, file_location);
+            open_browser_with_url(url);
+            open_text_view_with_location(file_location);
+
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
+
         } catch (NullPointerException ex) {
             // No file was selected, no need to throw exception
         }
-        String project_name = selected_file.getName().split("\\.")[0];
-        file_location = selected_file.toString();
-
-        open_new_tab(project_name, file_location);
-        open_browser_with_url(url);
-        open_text_view_with_location(file_location);
     }
 
     @Override
