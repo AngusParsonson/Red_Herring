@@ -210,6 +210,9 @@ public class Menu_Controller implements Initializable {
                 } catch (NullPointerException ex){}
                 try {
                     newTab.setContent(tab_vbox);
+                    view_button.setSelected(true);
+                    edit_button.setSelected(false);
+                    browser_button.setSelected(false);
                     open_browser_with_url(new File (newTab.getId()).toURI().toURL().toString());
                     open_text_view_with_location(newTab.getId());
                 } catch (NullPointerException ex){} catch (MalformedURLException e) {
