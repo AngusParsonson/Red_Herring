@@ -23,6 +23,7 @@ public class Menu_Controller implements Initializable {
 
     /** All functionality is wrapped in a separate function to allow for use in key shortcuts **/
     String file_location;
+    String current_browser_url = "https://www.google.com";
 
     @FXML
     private WebView webView;
@@ -118,34 +119,18 @@ public class Menu_Controller implements Initializable {
 
     @FXML
     private void handleViewButtonAction(final ActionEvent e) throws MalformedURLException {
-        if (view_button.isSelected()) {
-            edit_button.setSelected(false);
-            browser_button.setSelected(false);
+        Tab tab = tab_pane.getSelectionModel().getSelectedItem();
+        open_browser_with_url(new File (tab.getId()).toURI().toURL().toString());
 
-            Tab tab = tab_pane.getSelectionModel().getSelectedItem();
-            open_browser_with_url(new File (tab.getId()).toURI().toURL().toString());
-        }
-        else;
     }
 
     @FXML
     private void handleBrowserButtonAction(final ActionEvent e) {
-        if (browser_button.isSelected()) {
-            view_button.setSelected(false);
-            edit_button.setSelected(false);
-
-            open_browser_with_url("https://www.google.com");
-        }
-        else;
+        open_browser_with_url(current_browser_url);
     }
 
     @FXML
     private void handleEditButtonAction(final ActionEvent e) {
-        if (edit_button.isSelected()) {
-            view_button.setSelected(false);
-            browser_button.setSelected(false);
-        }
-        else;
     }
 
     private void provideAboutFunctionality() {

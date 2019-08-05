@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.web.WebView?>
 
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.Button?>
 <BorderPane fx:id="border_pane" onKeyPressed="#handleKeyInput" styleClass="/resources/css/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu_Controller">
     <top>
         <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
@@ -65,15 +66,18 @@
                      <children>
                          <VBox fx:id="tab_vbox" prefHeight="200.0" prefWidth="100">
                              <children>
-                                 <Button fx:id="deploy_button" onAction="#handleDeployButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Deploy" />
+                                 <Button fx:id="deploy_button" mnemonicParsing="false" onAction="#handleDeployButtonAction" prefHeight="35" prefWidth="Infinity" text="Deploy" />
                                  <Line endX="100.0" startX="-100.0" />
-                                 <Button fx:id="update_button" onAction="#handleUpdateButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Update" />
+                                 <Button fx:id="update_button" mnemonicParsing="false" onAction="#handleUpdateButtonAction" prefHeight="35" prefWidth="Infinity" text="Update" />
                                  <Line endX="100.0" startX="-100.0" />
-                                 <ToggleButton fx:id="view_button" onAction="#handleViewButtonAction" mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="View" />
+                                 <ToggleButton fx:id="view_button" mnemonicParsing="false" onAction="#handleViewButtonAction" prefHeight="35" prefWidth="Infinity" text="View">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="toggle_group" />
+                                 </toggleGroup></ToggleButton>
                                  <Line endX="100.0" startX="-100.0" />
-                                 <ToggleButton fx:id="browser_button" onAction="#handleBrowserButtonAction"  mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Browser" />
+                                 <ToggleButton fx:id="browser_button" mnemonicParsing="false" onAction="#handleBrowserButtonAction" prefHeight="35" prefWidth="Infinity" text="Browser" toggleGroup="$toggle_group" />
                                  <Line endX="100.0" startX="-100.0" />
-                                 <ToggleButton fx:id="edit_button" onAction="#handleEditButtonAction"  mnemonicParsing="false" prefHeight="35" prefWidth="Infinity" text="Edit" />
+                                 <ToggleButton fx:id="edit_button" mnemonicParsing="false" onAction="#handleEditButtonAction" prefHeight="35" prefWidth="Infinity" text="Edit" toggleGroup="$toggle_group" />
                                  <Line endX="100.0" startX="-100.0" />
                              </children>
                          </VBox>
@@ -84,7 +88,7 @@
         </TabPane>
     </left>
     <bottom>
-        <TextArea fx:id="text_area"  prefHeight="300"></TextArea>
+        <TextArea fx:id="text_area" prefHeight="300" />
     </bottom>
 
     <center>
