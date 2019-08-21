@@ -94,6 +94,13 @@ public class Menu_Controller implements Initializable {
         edit_button.setSelected(false);
         browser_button.setSelected(false);
         view_button.setSelected(false);
+
+        try {
+            Process p = Runtime.getRuntime().exec("C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe C:\\Users\\Admin\\IdeaProjects\\Red_Herring\\Red_Herring\\backend\\siteGrab.py");
+            System.out.println(p.isAlive());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
