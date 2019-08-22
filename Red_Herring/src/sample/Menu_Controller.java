@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Menu_Controller implements Initializable {
@@ -35,7 +34,7 @@ public class Menu_Controller implements Initializable {
     private VBox tab_vbox;
 
     @FXML
-    private TextArea text_area;
+    public TextArea text_area;
     
     @FXML
     private ToggleButton view_button;
@@ -47,7 +46,7 @@ public class Menu_Controller implements Initializable {
     /** The ID for the FXML tab objects are set to the path of the file the tab is corresponds to - this avoids
        having to create a whole new custom tab class **/
     @FXML
-    private TabPane tab_pane;
+    public TabPane tab_pane;
 
     /** Handle key shortcut inputs **/
     @FXML
@@ -94,13 +93,6 @@ public class Menu_Controller implements Initializable {
         edit_button.setSelected(false);
         browser_button.setSelected(false);
         view_button.setSelected(false);
-
-        try {
-            Process p = Runtime.getRuntime().exec("C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe C:\\Users\\Admin\\IdeaProjects\\Red_Herring\\Red_Herring\\backend\\siteGrab.py");
-            System.out.println(p.isAlive());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     @FXML
@@ -149,7 +141,7 @@ public class Menu_Controller implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("url_window.fxml"));
 
-            Scene scene = new Scene(fxmlLoader.load(), 400, 50);
+            Scene scene = new Scene(fxmlLoader.load(), 400, 90);
             Stage stage = new Stage();
             stage.setTitle("Enter url");
 
@@ -172,6 +164,7 @@ public class Menu_Controller implements Initializable {
 
         try {
             url = selected_file.toURI().toURL().toString();
+            System.out.println(url);
 
             String project_name = selected_file.getName().split("\\.")[0];
             file_location = selected_file.toString();
@@ -205,8 +198,10 @@ public class Menu_Controller implements Initializable {
                     view_button.setSelected(true);
                     edit_button.setSelected(false);
                     browser_button.setSelected(false);
+
                     open_browser_with_url(new File (newTab.getId()).toURI().toURL().toString());
                     open_text_view_with_location(newTab.getId());
+
                 } catch (NullPointerException ex){} catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
