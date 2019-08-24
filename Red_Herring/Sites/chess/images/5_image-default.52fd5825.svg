@@ -29,7 +29,7 @@
         <h1>
           <span class="cf-error-type" data-translate="error">Error</span>
           <span class="cf-error-code">1010</span>
-          <small class="heading-ray-id">Ray ID: 50a44d3eeef03657 &bull; 2019-08-22 10:53:13 UTC</small>
+          <small class="heading-ray-id">Ray ID: 50a7799e0a7cce27 &bull; 2019-08-22 20:07:48 UTC</small>
         </h1>
         <h2 class="cf-subheadline">Access denied</h2>
       </div><!-- /.header -->
@@ -40,7 +40,7 @@
         <div class="cf-columns two">
           <div class="cf-column">
             <h2 data-translate="what_happened">What happened?</h2>
-            <p>The owner of this website (www.chess.com) has banned your access based on your browser's signature (50a44d3eeef03657-ua48).</p>
+            <p>The owner of this website (www.chess.com) has banned your access based on your browser's signature (50a7799e0a7cce27-ua48).</p>
           </div>
 
           
@@ -49,9 +49,9 @@
 
       <div class="cf-error-footer cf-wrapper">
   <p>
-    <span class="cf-footer-item">Cloudflare Ray ID: <strong>50a44d3eeef03657</strong></span>
+    <span class="cf-footer-item">Cloudflare Ray ID: <strong>50a7799e0a7cce27</strong></span>
     <span class="cf-footer-separator">&bull;</span>
-    <span class="cf-footer-item"><span>Your IP</span>: 62.255.39.68</span>
+    <span class="cf-footer-item"><span>Your IP</span>: 185.69.145.6</span>
     <span class="cf-footer-separator">&bull;</span>
     <span class="cf-footer-item"><span>Performance &amp; security by</span> <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=error_footer" id="brand_link" target="_blank">Cloudflare</a></span>
     

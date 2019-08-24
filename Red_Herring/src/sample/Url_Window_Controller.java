@@ -46,16 +46,16 @@ public class Url_Window_Controller {
         String project_name = projectField.getText();
 
         try {
-            File sites_dir = new File("C:\\Users\\Admin\\IdeaProjects\\Red_Herring\\Red_Herring\\Sites");
+            File sites_dir = new File("C:\\Users\\Angus Parsonson\\Documents\\Computer Science\\Academy\\Red_Herring\\Red_Herring\\Sites");
 
-            Process p = Runtime.getRuntime().exec(new String[]{"C:\\Users\\Admin\\Python27\\python.exe", "C:\\Users\\Admin\\IdeaProjects\\Red_Herring\\Red_Herring\\backend\\siteGrab.py", url, project_name}, null, sites_dir);
+            Process p = Runtime.getRuntime().exec(new String[]{"C:\\Python27\\python.exe", "C:\\Users\\Angus Parsonson\\Documents\\Computer Science\\Academy\\Red_Herring\\Red_Herring\\backend\\siteGrab.py", url, project_name}, null, sites_dir);
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(p.getInputStream()));
             String line = null;
 
             while ((line = in.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

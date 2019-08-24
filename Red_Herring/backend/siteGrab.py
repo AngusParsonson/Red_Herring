@@ -66,13 +66,13 @@ def writeHTMLData(fileData, targetSite):
     
     fileData = "".join(line.replace('\n', '') for line in fileData.split("\n")) #GETS RID OF WHITESPACE
     #Rewrite file with correct spacing #
-    print fileData
-    temp = ''
-    for char in fileData:
-        temp+=char
-        if char == '>':
-            temp+='\t\n'
-    print temp
+    
+##    reformattedData = ''
+##    for char in fileData:
+##        reformattedData+=char
+##        if char == '>':
+##            reformattedData+='\t\n'
+##    fileData = reformattedData
     
     outputFile = open('{}{}.html'.format(workingDir, targetSite), 'w+')
     outputFile.write(str(fileData))
@@ -134,7 +134,7 @@ def scrapeSite(targetURL, targetSite):
             cssFilePath = '{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, cssFileName)
             indexedFileName = cssFileName
 
-            # Rewrite (Enumerate) #
+            # (Enumerate) #
             if os.path.isfile(cssFilePath):
                 indexedFileName = '{}_{}'.format(str(index), cssFileName)
                 cssFilePath = '{}\\{}\\styles\\{}'.format(os.getcwd(), targetSite, indexedFileName)
@@ -227,6 +227,9 @@ def scrapeSite(targetURL, targetSite):
     
     #print soup#.encode('utf-8')
     return soup.encode('utf-8')#.prettify().encode('utf-8')
+
+
+
 
 # ---------- MAIN ---------- #
 
